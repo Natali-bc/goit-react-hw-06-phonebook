@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from '../Filter/Filter.module.css';
+import changeFilter from '../../redux/actions/actions';
 
 const Filter = ({ handleChange, filter }) => {
   return (
@@ -22,4 +24,11 @@ Filter.propTypes = {
   handleChange: PropTypes.func.isRequired,
 };
 
-export default Filter;
+const mapStateToProps = state => ({
+  filter: state.filter,
+});
+const mapDispatchToProps = {
+  handleChange: changeFilter,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);

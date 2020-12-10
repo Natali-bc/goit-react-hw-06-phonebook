@@ -1,11 +1,11 @@
 //импортируем весь файл action.js
 // и представляем его как объект с именем actions
 import utils from '../../components/utils';
-import actions from '../actions/action';
-import { ADD_CONTACT, REMOVE_CONTACT } from '../actionTypes.js';
+import actions from '../actions/actions';
+import { ADD_CONTACT, REMOVE_CONTACT, CHANGE_FILTER } from '../actionTypes.js';
 import { combineReducers } from 'redux';
 // деструктуризируем наш объект actions
-const { addContact, removeContact } = actions;
+const { addContact, removeContact, changeFilter } = actions;
 
 const contactsReducer = (state = [], { type, payload }) => {
   switch (type) {
@@ -20,7 +20,7 @@ const contactsReducer = (state = [], { type, payload }) => {
 
 const filterReducer = (state = '', { type, payload }) => {
   switch (type) {
-    case '':
+    case CHANGE_FILTER:
       return payload;
     default:
       return state;

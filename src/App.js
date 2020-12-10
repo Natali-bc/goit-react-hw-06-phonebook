@@ -7,8 +7,8 @@ import ContactList from './components/ContactList/ContactList.jsx';
 import Filter from './components/Filter/Filter.jsx';
 import Notification from './components/Notification/Notification';
 import notificationStyles from './components/Notification/Notification.module.css';
-import { connect } from 'react-redux';
-import addContact from './redux/actions/action';
+// import { connect } from 'react-redux';
+// import addContact from './redux/actions/actions';
 
 class App extends Component {
   static defaultProps = {};
@@ -120,14 +120,14 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => ({
-  contacts: state.contacts,
-});
-const mapDispatchToProps = dispatch => ({
-  addContact: contact => {
-    dispatch(addContact.addContact(contact));
-  },
-});
+// const mapStateToProps = (state, props) => ({
+//   contacts: state.contacts,
+// });
+// const mapDispatchToProps = dispatch => ({
+//   addContact: contact => {
+//     dispatch(addContact.addContact(contact));
+//   },
+// });
 // const mapDispatchToProps = { addContact };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
