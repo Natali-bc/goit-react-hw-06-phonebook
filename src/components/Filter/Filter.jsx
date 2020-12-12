@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from '../Filter/Filter.module.css';
-import changeFilter from '../../redux/actions/actions';
+import { changeFilter } from '../../redux/actions/actions';
 
 const Filter = ({ handleChange, filter }) => {
   return (
@@ -12,7 +12,7 @@ const Filter = ({ handleChange, filter }) => {
         type="text"
         name="filter"
         value={filter}
-        onChange={handleChange}
+        onChange={event => handleChange(event.target.value)}
         className={styles.input}
       />
     </label>

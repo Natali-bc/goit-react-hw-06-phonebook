@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from '../ContactForm/ContactForm.module.css';
 import { connect } from 'react-redux';
-import addContact from '../../redux/actions/actions';
+import { addContact, notification } from '../../redux/actions/actions';
 
 class ContactForm extends Component {
   state = {
@@ -16,8 +16,18 @@ class ContactForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.addContact(this.state.name, this.state.number);
-    this.setState({ name: '', number: '' });
+    const contact = { name: this.state.name, number: this.state.number };
+
+    if (this.props.contacts.find(contact => contact.name === this.state.name)) {
+      this.props.notification(true);
+      setTimeout(() => {
+        this.props.notification(false);
+      }, 2000);
+      this.setState({ name: '', number: '' });
+    } else {
+      this.props.addContact(contact);
+      this.setState({ name: '', number: '' });
+    }
   };
 
   render() {
@@ -51,8 +61,14 @@ class ContactForm extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  contacts: state.contacts,
+});
+
 const mapDispatchToProps = {
   addContact,
+  notification,
 };
 
-export default connect(null, mapDispatchToProps)(ContactForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
